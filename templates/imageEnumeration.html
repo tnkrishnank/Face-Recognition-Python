@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Safe City | Get Identity</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+	<link rel="stylesheet" href="../static/css/upload.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login0">
+			<div class="wrap-login0 d-flex justify-content-center" style="width: 960px;">
+                <form action="/imageEnumeration" method="post" id="files-form" name="files-form" enctype="multipart/form-data">
+                    <div class="load-image-box">
+                        <output id="Filelist"></output>
+                    </div>
+                    <div class="btn btn-success fileinput-button">
+                        <span>Choose Files</span>
+                        <input type="file" name="files[]" id="files" multiple="" accept="image/*"><br/>
+                    </div>
+                    <div class="container-login0-form-btn" id="button">
+                        <button class="login0-form-btn" id="submitButton" name="submitButton" value="new-data" type="submit">
+                            UPLOAD
+                        </button>
+                    </div>
+                </form>
+                <div class="text-center p-t-50">
+                    <a class="txt2" href="dashboard">
+                        <i class="fa fa-long-arrow-left m-r-5" aria-hidden="true"></i>
+                        GO TO HOME
+                    </a>
+                </div>
+			</div>
+		</div>
+	</div>
+
+    <script>
+        var p = 0;
+        var prev = 0;
+        file_data = document.getElementById("files")
+        file_data.addEventListener('change', (e) => {
+            var l = Object.keys(e.target.files).length;
+            if (p == 0) {
+                prev = l;
+                p = 1;
+            }
+            else {
+                t = prev;
+                while (t > 0) {
+                    var queue = document.getElementById('imgList');
+                    var elements = queue.getElementsByTagName('li');
+                    queue.removeChild(elements[0]);
+
+                    t -= 1;
+                }
+                prev = l;
+            }
+        })
+
+        document.addEventListener("DOMContentLoaded", init, false);
+        var AttachmentArray = [];
+        var arrCounter = 0;
+        var filesCounterAlertStatus = false;
+        var ul = document.createElement('ul');
+        ul.className = ("thumb-Images");
+        ul.id = "imgList";
+
+        function init() {
+            document.querySelector('#files').addEventListener('change', handleFileSelect, false);
+        }
+
+        function handleFileSelect(e) {
+            if (!e.target.files) return;
+            var files = e.target.files;
+            for (var i = 0, f; f = files[i]; i++) {
+                var fileReader = new FileReader();
+                fileReader.onload = (function (readerEvt) {
+                    return function (e) {
+                        ApplyFileValidationRules(readerEvt)
+                        RenderThumbnail(e, readerEvt);
+                        FillAttachmentArray(e, readerEvt)
+                    };
+                })(f);
+                fileReader.readAsDataURL(f);
+            }
+            document.getElementById('files').addEventListener('change', handleFileSelect, false);
+        }
+
+        function ApplyFileValidationRules(readerEvt)
+        {
+            if (CheckFileType(readerEvt.type) == false) {
+                alert("The file (" + readerEvt.name + ") does not match the upload conditions, You can only upload jpg/jpeg/png files");
+                e.preventDefault();
+                return;
+            }
+            if (CheckFileSize(readerEvt.size) == false) {
+                alert("The file (" + readerEvt.name + ") does not match the upload conditions, The maximum file size for uploads should not exceed 10 MB");
+                e.preventDefault();
+                return;
+            }
+            if (CheckFilesCount(AttachmentArray) == false) {
+                if (!filesCounterAlertStatus) {
+                    filesCounterAlertStatus = true;
+                    alert("You have added more than 10 files. According to upload conditions you can upload 10 files maximum");
+                }
+                e.preventDefault();
+                return;
+            }
+        }
+
+        function CheckFileType(fileType) {
+            if (fileType == "image/jpeg") {
+                return true;
+            }
+            else if (fileType == "image/png") {
+                return true;
+            }
+            else if (fileType == "image/jpg") {
+                return true;
+            }
+            else {
+                return false;
+            }
+            return true;
+        }
+
+        function CheckFileSize(fileSize) {
+            if (fileSize < 10485760) {
+                return true;
+            }
+            else {
+                return false;
+            }
+            return true;
+        }
+
+        function CheckFilesCount(AttachmentArray) {
+            var len = 0;
+            for (var i = 0; i < AttachmentArray.length; i++) {
+                if (AttachmentArray[i] !== undefined) {
+                    len++;
+                }
+            }
+            if (len > 9) {
+                return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        function RenderThumbnail(e, readerEvt)
+        {
+            var li = document.createElement('li');
+            ul.appendChild(li);
+            li.innerHTML = ['<div class="img-wrap">' +
+                '<img class="thumb" src="', e.target.result, '" title="', escape(readerEvt.name), '" data-id="',
+                readerEvt.name, '"/>' + '</div>'].join('');
+            var div = document.createElement('div');
+            div.className = "FileNameCaptionStyle";
+            li.appendChild(div);
+            div.innerHTML = [readerEvt.name].join('');
+            document.getElementById('Filelist').insertBefore(ul, null);
+        }
+
+        function FillAttachmentArray(e, readerEvt)
+        {
+            AttachmentArray[arrCounter] =
+            {
+                AttachmentType: 1,
+                ObjectType: 1,
+                FileName: readerEvt.name,
+                FileDescription: "Attachment",
+                NoteText: "",
+                MimeType: readerEvt.type,
+                Content: e.target.result.split("base64,")[1],
+                FileSizeInBytes: readerEvt.size
+            };
+            arrCounter = arrCounter + 1;
+        }
+    </script>
+	<script src="../static/js/main.js"></script>
+    <script type="text/javascript" src="../static/js/jquery-1.10.2.js"></script>
+</body>
+</html>

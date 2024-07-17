@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Safe City | Admin Dashboard</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login0">
+			<div class="wrap-login0 d-flex justify-content-center" style="width: 960px;">
+				<form class="login0-form validate-form w-100" method="post">
+					<div class="d-flex justify-content-between align-items-center">
+						<div class="login0-form-title pl-3 pb-0" style="text-align: left !important;">
+							{{welcome}}
+						</div>
+
+						<div class="pr-0 pl-0">
+							<button class="login1-form-btn" name="logout" value="signout" type="submit">
+								LOGOUT
+							</button>
+						</div>
+					</div>
+
+					<div class="pr-2 pl-2">
+						<hr class="mb-0" color="white">
+					</div>
+
+                    <div class="container-login0-form-btn">
+						<button class="login0-form-btn" id="getpid" type="button">
+							GET POLICE ID
+						</button>
+					</div>
+
+                    <script type="text/javascript">
+                        document.getElementById("getpid").onclick = function () {
+                            location.href = "getpid";
+                        };
+                    </script>
+
+					<div class="container-login0-form-btn">
+						<button class="login0-form-btn" id="signup" type="button">
+							CREATE NEW POLCIE ACCOUNT
+						</button>
+					</div>
+
+                    <script type="text/javascript">
+                        document.getElementById("signup").onclick = function () {
+                            location.href = "signup";
+                        };
+                    </script>
+
+					<div class="container-login0-form-btn">
+						<button class="login0-form-btn" id="delete" type="button">
+							DELETE POLICE ACCOUNT
+						</button>
+					</div>
+
+                    <script type="text/javascript">
+                        document.getElementById("delete").onclick = function () {
+                            location.href = "deletePolice";
+                        };
+                    </script>
+
+                    <div class="text-center p-t-50">
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="../static/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,58 @@
+FOREGROUND
+1. Upload Photos to get Identity
+2. Get CCTV Report
+3. Add a Victim
+4. Add a User
+
+BACKGROUND
+1. CCTV Record
+2. Message Sending
+
+MODULES
+1. Check if uploaded image contains a face
+2. Compare two faces
+3. Threat log in database
+4. Get gender of a person
+5. Get age category of a person
+6. Detect faces in live CCTV
+
+CIVILIAN
+UUID
+NAME
+GENDER
+AGE
+IMAGE
+ADDRESS
+CITY
+ZIP CODE
+PHONE NUMBER
+EMAIL
+
+POLICE
+PID
+UUID
+PASSWORD
+
+CRIMINAL
+CID
+UUID
+
+CRIME
+CRID
+LOCATION
+TYPE
+DESCRIPTION
+CID LIST
+
+ADMINS
+AID
+UUID
+PASSWORD
+
+GET IDENTITY --> IMAGE
+CCTV ENUMERATION --> VIDEO, CCTV LINK
+MONITOR --> CCTV LINK
+COMPARE TWO FACES
+ADD CRIME
+ADD CRIMINAL
+ADD CIVILIAN

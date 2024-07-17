@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Safe City | Admin Login</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login0">
+			<div class="wrap-login0">
+				<form class="login0-form validate-form" method="post">
+					<span class="login0-form-title">
+						ADMIN LOGIN
+					</span>
+
+					<div class="wrap-input0">
+						<input class="input0" type="text" name="aid" placeholder="Admin ID" required>
+						<span class="focus-input0"></span>
+						<span class="symbol-input0">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<span class="text-warning d-flex justify-content-center">
+						<label>{{usrMsg}}</label>
+					</span>
+
+					<div class="wrap-input0">
+						<input class="input0" type="password" name="password" id="pass" placeholder="Password" required>
+						<span class="focus-input0"></span>
+						<span class="symbol-input0">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<span class="text-warning d-flex justify-content-center">
+						<label>{{passMsg}}</label>
+					</span>
+
+					<div class="container-login0-form-btn pt-0">
+						<button class="login0-form-btn" style="background-color: #000; color: #fff" id="sPass" onclick="showPass()" type="button">
+							SHOW PASSWORD
+						</button>
+					</div>
+
+					<div class="container-login0-form-btn">
+						<button class="login0-form-btn" type="submit">
+							LOGIN
+						</button>
+					</div>
+
+					<div class="text-center p-t-80">
+						<a class="txt2" href="/">
+							<i class="fa fa-long-arrow-left m-r-5" aria-hidden="true"></i>
+							POLICE LOGIN
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+
+		<div class="fixed-bottom">
+			<nav class="navbar navbar-expand-lg bg-dark pb-1">
+				<ul class="navbar-nav mr-auto" style="display: inline !important;">
+					<li class="nav-item mr-3" style="float: left;">
+						<a class="nav-link" href="#">
+							ABOUT
+						</a>
+					</li>
+					<li class="nav-item mr-3" style="float: left;">
+					  	<a class="nav-link" href="#">
+							PRIVACY
+						</a>
+					</li>
+					<li class="nav-item mr-3" style="float: left;">
+						<a class="nav-link" href="#">
+							TERMS
+					  	</a>
+				  	</li>
+				</ul>
+				<ul class="navbar-nav me-auto">
+					<li class="nav-item text-white">
+						&copy; 2022 SAFE CITY
+				  	</li>
+				</ul>
+			</nav>
+		</div>
+	</div>
+
+	<script src="../static/js/main.js"></script>
+	<script>
+		function showPass() {
+		  var x = document.getElementById("pass");
+		  if (x.type === "password") {
+			x.type = "text";
+			document.getElementById("sPass").style.cssText = 'background-color: #fff; color: #000;';
+			document.getElementById('sPass').textContent = 'HIDE PASSWORD';
+		  } else {
+			x.type = "password";
+			document.getElementById("sPass").style.cssText = 'background-color: #000; color: #fff;';
+			document.getElementById('sPass').textContent = 'SHOW PASSWORD';
+		  }
+		}
+	</script>
+</body>
+</html>

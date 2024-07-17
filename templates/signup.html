@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Safe City | Signup</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login0">
+			<div class="wrap-login0">
+				<form class="login0-form validate-form" method="post">
+					<span class="login0-form-title">
+						SIGN UP
+					</span>
+
+					<div class="wrap-input0">
+						<input class="input0" type="text" name="uuid" placeholder="Unique User ID" required>
+						<span class="focus-input0"></span>
+						<span class="symbol-input0">
+							<i class="fa fa-user" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<span class="text-warning d-flex justify-content-center">
+						<label>{{usrMsg}}</label>
+					</span>
+
+					<div class="wrap-input0">
+						<input class="input0" type="password" name="password" id="pass" placeholder="Password" required>
+						<span class="focus-input0"></span>
+						<span class="symbol-input0">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<span class="text-warning d-flex justify-content-center">
+						<label>{{psswdMsg}}</label>
+					</span>
+
+					<div class="wrap-input0">
+						<input class="input0" type="password" name="re-password" id="rePass" placeholder="Retype Password" required>
+						<span class="focus-input0"></span>
+						<span class="symbol-input0">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					<span class="text-warning d-flex justify-content-center">
+						<label>{{rePsswdMsg}}</label>
+					</span>
+
+					<div class="container-login0-form-btn pt-0">
+						<button class="login0-form-btn" style="background-color: #000; color: #fff" id="sPass" onclick="showPass()" type="button">
+							SHOW PASSWORD
+						</button>
+					</div>
+
+					<div class="container-login0-form-btn">
+						<button class="login0-form-btn" name="submitButton" value="new-data" type="submit">
+							CREATE ACCOUNT
+						</button>
+					</div>
+
+					<div class="text-center p-t-80">
+						<a class="txt2" href="adminDashboard">
+							<i class="fa fa-long-arrow-left m-r-5" aria-hidden="true"></i>
+							GO TO HOME
+						</a>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
+	<script src="../static/js/main.js"></script>
+	<script>
+		function showPass() {
+		  var x = document.getElementById("pass");
+		  var y = document.getElementById("rePass");
+		  if (x.type === "password") {
+			x.type = "text";
+			y.type = "text";
+			document.getElementById("sPass").style.cssText = 'background-color: #fff; color: #000;';
+			document.getElementById('sPass').textContent = 'HIDE PASSWORD';
+		  } else {
+			x.type = "password";
+			y.type = "password";
+			document.getElementById("sPass").style.cssText = 'background-color: #000; color: #fff;';
+			document.getElementById('sPass').textContent = 'SHOW PASSWORD';
+		  }
+		}
+	</script>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Safe City | Image Enumeration Report</title>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/animate/animate.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/css-hamburgers/hamburgers.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/vendor/select2/select2.min.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/util.css">
+	<link rel="stylesheet" type="text/css" href="../static/css/main.css">
+
+	<style>
+		img {
+            height: 100px;
+            width: 100px;
+        }
+
+        @import url('https://fonts.googleapis.com/css?family=Montserrat');
+
+        * {
+            box-sizing: border-box;
+        }
+
+        h3 {
+            margin: 10px 0;
+        }
+
+        h6 {
+            margin: 5px 0;
+        }
+
+        p {
+            font-size: 14px;
+            line-height: 21px;
+        }
+
+		.card-container {
+            background-color: #231E39;
+            border-radius: 5px;
+            box-shadow: 0px 10px 20px -10px rgba(0, 0, 0, 0.75);
+            color: #B3B8CD;
+            padding-top: 30px;
+            width: 350px;
+            max-width: 100%;
+            text-align: center;
+        }
+
+        .card-container .pro {
+            color: #231E39;
+            background-color: #FEBB0B;
+            border-radius: 3px;
+            font-size: 14px;
+            font-weight: bold;
+            padding: 3px 7px;
+            position: absolute;
+            top: 30px;
+            left: 30px;
+        }
+
+        .card-container .round {
+            border: 1px solid #03BFCB;
+            border-radius: 30%;
+            padding: 7px;
+        }
+	</style>
+</head>
+<body>
+	<div class="limiter">
+		<div class="container-login0" style="display: flex; flex-direction: column;">
+			{% if unk %}
+				<div class="wrap-login0 d-flex justify-content-center m-t-30 m-b-30" style="padding-top: 30px; padding-bottom: 30px;">
+					<form class="login0-form validate-form w-100" name="analysisType" id="analysisType" method="post">
+						<div class="container-login0-form-btn">
+							<button class="login0-form-btn" id="unrecogAnalysis" type="button">
+								UNRECOGNIZED FACE ANALYSIS
+							</button>
+						</div>
+			
+						<script type="text/javascript">
+							document.getElementById("unrecogAnalysis").onclick = function () {
+								location.href = "unrecogAnalysis";
+							};
+						</script>
+
+						<div class="text-center p-t-30">
+							<a class="txt2" href="dashboard">
+								<i class="fa fa-long-arrow-left m-r-5" aria-hidden="true"></i>
+								GO TO HOME
+							</a>
+						</div>
+					</form>
+				</div>
+			{% endif %}
+			{% for doc in data %}
+                <div class="card-container d-flex justify-content-center m-b-30" style="padding-top: 30px; padding-bottom: 30px;">
+                    <form class="login0-form validate-form w-100" name="analysisType" id="analysisType" method="post">
+                        <img class="round" src={{doc.Assumption}} alt="user" />
+                        <img class="round" src={{doc.Original}} alt="user" />
+                        <br>
+                        <h3>{{doc.Name}}</h3>
+                        <h5>{{doc.UUID}}</h5>
+                        <h5>{{doc.Gender}}&emsp;-&emsp;{{doc.Age}}</h5>
+                        <h5>{{doc.Email}}</h5>
+                        <h5>{{doc.Mobile}}</h5>
+                        <h5>{{doc.City}}</h5>
+                        <h5>{{doc.ZipCode}}</h5>
+                        <br>
+                        <p>{{doc.Address}}</p>
+                        <br>
+					</form>
+                </div>
+			{% endfor %}
+		</div>
+	</div>
+
+	<script src="../static/js/main.js"></script>
+</body>
+</html>
